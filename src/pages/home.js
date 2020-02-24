@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import Scream from '../components/Scream';
+import Profile from '../components/Profile';
 
 
 class home extends Component {
@@ -27,11 +28,12 @@ class home extends Component {
         return (
            <Grid container spacing ={10}>
                <Grid item sm={8} xs={12}>
-                   <h1>Latest Screams .. </h1>
+                   <p>Latest Screams .. </p>
                    {recentScreamsMarkup}
                </Grid>
                <Grid item sm={4} xs={12}>
-                   <h1>profile</h1>
+                   <p style={{textAlign:'center'}}> User's Profile </p>
+                   <Profile />
                </Grid>
            </Grid>
         )
