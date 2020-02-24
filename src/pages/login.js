@@ -46,8 +46,8 @@ class login extends Component {
     constructor() {
         super();
         this.state = {
-            email: ' ',
-            passwor: ' ',
+            email: '',
+            password: '',
             loading: false,
             errors: {}
         }
@@ -67,7 +67,7 @@ class login extends Component {
         }
 
         axios.post('/login', userData).then((res)=>{
-            console.log(res.data);
+            localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
             this.setState({loading: false});
             this.props.history.push('/');
         })
