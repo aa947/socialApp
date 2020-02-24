@@ -8,10 +8,14 @@ import AuthRoute from './components/AuthRoute'
 
 //import pages
 import home from './pages/home';
-import login from './pages/login';
+import Login from './pages/login';
 import signup from './pages/signup';
 
 import jwtDecode from 'jwt-decode';
+
+//redux
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 
 const token = localStorage.FBIdToken;
@@ -30,19 +34,21 @@ if(token){
 
 function App() {
   return (
+    <Provider store={store} >
     <div className="App">
   <Router>
   <Navbar />
     <div className="container">
     <Switch>
       <Route exact path='/' component={home}  />
-      <AuthRoute exact path='/login' component={login} authenticated={authenticated} />
+      <AuthRoute exact path='/login' component={Login} authenticated={authenticated} />
       <AuthRoute exact path='/signup' component={signup} authenticated={authenticated} />
     </Switch>
     </div>
   </Router>
 
     </div>
+    </Provider>
   );
 }
 
