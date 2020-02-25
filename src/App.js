@@ -10,6 +10,8 @@ import AuthRoute from './components/AuthRoute'
 import home from './pages/home';
 import Login from './pages/login';
 import signup from './pages/signup';
+import user from './pages/user';
+
 
 import jwtDecode from 'jwt-decode';
 
@@ -46,6 +48,9 @@ function App() {
       <Route exact path='/' component={home}  />
       <AuthRoute exact path='/login' component={Login} />
       <AuthRoute exact path='/signup' component={signup} />
+      <Route exact path="/users/:handle" component={user} />
+      <Route exact path="/users/:handle/scream/:screamId"
+                  component={user}  />
     </Switch>
     </div>
   </Router>

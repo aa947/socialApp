@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import EditDetails from './EditDetails';
 
 
-import ProfileSkeleton from "../util/ProfileSkeleton";
+import ProfileSkeleton from "./ProfileSkeleton";
 // MUI stuff
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -118,12 +118,12 @@ class Profile extends Component {
                             onChange={this.handleImageChange}
                         />
 
-                        <br />
+                        <hr className={classes.hr} />
                         <MuiLink component={Link} to={`/users/${handle}`} variant="h5">
                             @{handle}
                         </MuiLink>
 
-                      
+
                         <br /> <br />
                         {bio && <Typography variant="body2">{bio} <br /> <br /> <br /> </Typography>}
 
@@ -189,7 +189,8 @@ class Profile extends Component {
                     </Paper>
                 )
         ) : (
-                <p>loading ..</p>
+            <ProfileSkeleton />
+
             );
 
         return profileMarkup;

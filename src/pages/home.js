@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import Scream from '../components/Scream';
 import Profile from '../components/Profile';
+import ScreamSkeleton from '../components/ScreamSkeleton';
 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -21,16 +22,17 @@ class home extends Component {
             screams.map((scream)=>{
                 return(<Scream scream={scream} key={scream.screamId} />);
             })
-        ) : <p>loading Screams...</p>
+        ) :       <ScreamSkeleton />
+
 
         return (
            <Grid container spacing ={10}>
                <Grid item sm={8} xs={12}>
-                   <p>Latest Screams .. </p>
+                   <p style={{textAlign:'center'}}>Latest Posts .. </p>
                    {recentScreamsMarkup}
                </Grid>
                <Grid item sm={4} xs={12}>
-                   <p style={{textAlign:'center'}}> User's Profile </p>
+                   <p style={{textAlign:'center'}}> MY Profile </p>
                    <Profile />
                </Grid>
            </Grid>

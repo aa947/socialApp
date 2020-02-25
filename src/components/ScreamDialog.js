@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import MyButton from '../util/MyButton';
 import LikeButton from './LikeButton';
-// import Comments from './Comments';
-// import CommentForm from './CommentForm';
+import Comments from './Comments';
+import CommentForm from './CommentForm';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 // MUI Stuff
@@ -50,13 +50,35 @@ class ScreamDialog extends Component {
   state = {
     open: false,
     oldPath: '',
-    newPath: ''
+    newPath: '',
+    getScreamData: false
   };
+
+  // componentDidMount() {
+  //   if (this.props.openDialog) {
+  //     this.handleOpen();
+  //   }
+  // }
+
+
   componentDidMount() {
-    if (this.props.openDialog) {
+    if (this.props.openDialog && !this.state.getScreamData) {  //<= newly added
+      this.setState({ getScreamData: true });   //<= newly added
       this.handleOpen();
     }
   }
+
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.openDialog && !this.state.getScreamData) {
+      this.setState({ getScreamData: true });
+      this.handleOpen();
+    }
+  }
+
+
+  
+
   handleOpen = () => {
     let oldPath = window.location.pathname;
 
@@ -70,9 +92,19 @@ class ScreamDialog extends Component {
     this.setState({ open: true, oldPath, newPath });
     this.props.getScream(this.props.screamId);
   };
+
+  
+
+
+  // handleClose = () => {
+  //   window.history.pushState(null, null, this.state.oldPath);
+  //   this.setState({ open: false });
+  //   this.props.clearErrors();
+  // };
+
   handleClose = () => {
     window.history.pushState(null, null, this.state.oldPath);
-    this.setState({ open: false });
+    this.setState({ open: false, getScreamData: false });   //<= newly added
     this.props.clearErrors();
   };
 
@@ -124,8 +156,8 @@ class ScreamDialog extends Component {
           <span>{commentCount} comments</span>
         </Grid>
         <hr className={classes.visibleSeparator} />
-        {/* <CommentForm screamId={screamId} /> */}
-        {/* <Comments comments={comments} /> */}
+        <CommentForm screamId={screamId} />
+        <Comments comments={comments} />
       </Grid>
     );
     return (

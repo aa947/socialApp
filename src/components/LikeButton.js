@@ -28,6 +28,7 @@ export class LikeButton extends Component {
   };
   render() {
     const { authenticated } = this.props.user;
+   // const { comments } =this.props.scream
     const likeButton = !authenticated ? (
       <Link to="/login">
         <MyButton tip="Like">
@@ -56,6 +57,7 @@ LikeButton.propTypes = {
 
 const mapStateToProps = (state) => ({
   user: state.user
+  // scream: state.data.scream 
 });
 
 const mapActionsToProps = {
