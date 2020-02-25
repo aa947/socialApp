@@ -3,7 +3,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 import MyButton from '../util/MyButton';
 import DeleteScream from './DeleteScream';
-// import ScreamDialog from './ScreamDialog';
+import ScreamDialog from './ScreamDialog';
 import LikeButton from './LikeButton';
 
 //MUI stuff
@@ -16,7 +16,6 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 
 //redux
 import { connect } from 'react-redux';
-import { likeScream, unlikeScream } from '../redux/actions/dataActions';
 import PropTypes from 'prop-types';
 
 //Icons
@@ -31,6 +30,8 @@ const styles = {
     },
     image: {
         minWidth: 200
+        // maxWidth: 201,
+        // height: 200,
     },
     content: {
         padding: 25,
@@ -64,11 +65,11 @@ export class Scream extends Component {
                     </MyButton>
                     <span>{commentCount} comments</span>
                     { deleteButton }
-                    {/* <ScreamDialog
+                    <ScreamDialog
                         screamId={screamId}
                         userHandle={userHandle}
                         openDialog={this.props.openDialog}
-                    /> */}
+                    />
                 </CardContent>
             </Card>
         )
@@ -77,8 +78,7 @@ export class Scream extends Component {
 
 
 Scream.propTypes = {
-    likeScream: PropTypes.func.isRequired,
-    unlikeScream: PropTypes.func.isRequired,
+   
     user: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
     scream: PropTypes.object.isRequired
@@ -87,8 +87,5 @@ Scream.propTypes = {
 const mapStateToProps = state => ({
     user: state.user
 })
-const mapActionsToProps = {
-    likeScream, unlikeScream
-}
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Scream));
+export default connect(mapStateToProps, null)(withStyles(styles)(Scream));

@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import MyButton from '../../util/MyButton';
+import MyButton from '../util/MyButton';
 import LikeButton from './LikeButton';
-import Comments from './Comments';
-import CommentForm from './CommentForm';
+// import Comments from './Comments';
+// import CommentForm from './CommentForm';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
 // MUI Stuff
@@ -19,14 +19,13 @@ import UnfoldMore from '@material-ui/icons/UnfoldMore';
 import ChatIcon from '@material-ui/icons/Chat';
 // Redux stuff
 import { connect } from 'react-redux';
-import { getScream, clearErrors } from '../../redux/actions/dataActions';
+import { getScream, clearErrors } from '../redux/actions/dataActions';
 
-const styles = (theme) => ({
-  ...theme,
+const styles = {
   profileImage: {
     maxWidth: 200,
     height: 200,
-    borderRadius: '50%',
+    borderRadius: '5%',
     objectFit: 'cover'
   },
   dialogContent: {
@@ -37,15 +36,15 @@ const styles = (theme) => ({
     left: '90%'
   },
   expandButton: {
-    position: 'absolute',
-    left: '90%'
+     position: 'absolute',
+     left: '58%'
   },
   spinnerDiv: {
     textAlign: 'center',
     marginTop: 50,
     marginBottom: 50
   }
-});
+};
 
 class ScreamDialog extends Component {
   state = {
@@ -98,7 +97,7 @@ class ScreamDialog extends Component {
         <CircularProgress size={200} thickness={2} />
       </div>
     ) : (
-      <Grid container spacing={16}>
+      <Grid container spacing={5}>
         <Grid item sm={5}>
           <img src={userImage} alt="Profile" className={classes.profileImage} />
         </Grid>
@@ -125,18 +124,18 @@ class ScreamDialog extends Component {
           <span>{commentCount} comments</span>
         </Grid>
         <hr className={classes.visibleSeparator} />
-        <CommentForm screamId={screamId} />
-        <Comments comments={comments} />
+        {/* <CommentForm screamId={screamId} /> */}
+        {/* <Comments comments={comments} /> */}
       </Grid>
     );
     return (
       <Fragment>
         <MyButton
           onClick={this.handleOpen}
-          tip="Expand scream"
+          tip="See Full Post"
           tipClassName={classes.expandButton}
         >
-          <UnfoldMore color="primary" />
+          <UnfoldMore color="primary" /> 
         </MyButton>
         <Dialog
           open={this.state.open}

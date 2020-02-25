@@ -28,11 +28,13 @@ import {
           screams: action.payload,
           loading: false
         };
-    //   case SET_SCREAM:
-    //     return {
-    //       ...state,
-    //       scream: action.payload
-    //     };
+
+      case SET_SCREAM:
+        return {
+          ...state,
+          scream: action.payload
+        };
+
       case LIKE_SCREAM:
       case UNLIKE_SCREAM:
         let index = state.screams.findIndex(
@@ -55,19 +57,19 @@ import {
           ...state,
           screams: [...mutatedScreams]
         };
-    //   case POST_SCREAM:
-    //     return {
-    //       ...state,
-    //       screams: [action.payload, ...state.screams]
-    //     };
-    //   case SUBMIT_COMMENT:
-    //     return {
-    //       ...state,
-    //       scream: {
-    //         ...state.scream,
-    //         comments: [action.payload, ...state.scream.comments]
-    //       }
-    //     };
+      case POST_SCREAM:
+        return {
+          ...state,
+          screams: [action.payload, ...state.screams]
+        };
+      case SUBMIT_COMMENT:
+        return {
+          ...state,
+          scream: {
+            ...state.scream,
+            comments: [action.payload, ...state.scream.comments]
+          }
+        };
       default:
         return state;
     }
