@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'; 
 import { Link } from 'react-router-dom';
-//import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MyButton from '../util/MyButton';
 //import PostScream from '../scream/PostScream';
@@ -10,7 +10,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 // Icons
-//import HomeIcon from '@material-ui/icons/Home';
+import HomeIcon from '@material-ui/icons/Home';
 
 class Navbar extends Component {
   render() {
@@ -23,7 +23,7 @@ class Navbar extends Component {
               {/* <PostScream /> */}
               <Link to="/">
                 <MyButton tip="Home">
-                  {/* <HomeIcon /> */}
+                  <HomeIcon color="secondary" />
                 </MyButton>
               </Link>
               {/* <Notifications /> */}
@@ -47,13 +47,12 @@ class Navbar extends Component {
   }
 }
 
-// Navbar.propTypes = {
-//   authenticated: PropTypes.bool.isRequired
-// };
+Navbar.propTypes = {
+  authenticated: PropTypes.bool.isRequired
+};
 
-// const mapStateToProps = (state) => ({
-//   authenticated: state.user.authenticated
-// });
+const mapStateToProps = (state) => ({
+  authenticated: state.user.authenticated
+});
 
-// export default connect(mapStateToProps)(Navbar);
-export default Navbar;
+export default connect(mapStateToProps)(Navbar);

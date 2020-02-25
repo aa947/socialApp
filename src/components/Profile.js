@@ -22,6 +22,7 @@ import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 //Redux
 import { connect } from "react-redux";
 import { logoutUser, uploadImage } from "../redux/actions/userActions";
+import AccountBoxSharpIcon from '@material-ui/icons/AccountBoxSharp';
 
 const styles = {
     paper: {
@@ -122,12 +123,8 @@ class Profile extends Component {
                             @{handle}
                         </MuiLink>
 
-                        <Tooltip title="change profile photo" placement="top" >
-                            <IconButton onClick={this.handleEditPicture} className={classes.button}>
-                                <EditIcon color="primary"></EditIcon>
-                            </IconButton>
-                        </Tooltip>
-                        <br />
+                      
+                        <br /> <br />
                         {bio && <Typography variant="body2">{bio} <br /> <br /> <br /> </Typography>}
 
                         {location && (
@@ -148,13 +145,20 @@ class Profile extends Component {
                         )}
                         <CalendarToday color="primary" />{" "}
                         <span>Joined {dayjs(createdAt).format("MMM YYYY")}</span>
+                        <hr className={classes.hr} />
                         <Tooltip title="Logout" placement="top">
                             <IconButton onClick={this.handleLogout} >
 
                                 <KeyboardReturn color="primary" />
                             </IconButton>
                         </Tooltip>
-                        
+
+                        <Tooltip title="change profile photo" placement="top" >
+                            <IconButton onClick={this.handleEditPicture} className={classes.button}>
+                                <AccountBoxSharpIcon color="primary"></AccountBoxSharpIcon>
+                            </IconButton>
+                        </Tooltip>
+
                         <EditDetails />
 
                     </div>
